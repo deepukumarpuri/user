@@ -4,10 +4,7 @@ import time
 import asyncio
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
-from ULTRA import ALIVE_NAME, StartTime, CMD_HELP
 #from . import legend
-from ULTRAX import BOT, PHOTO, VERSION
-from ULTRA.utils import admin_cmd, sudo_cmd
 from math import ceil
 import json
 import random
@@ -23,8 +20,6 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 #make by LEGEND X bht mehnat lag gayi yrr but banhi gaya 😅 
 #so credits ke sath kang krna, nhi to tum jante ho apna bhai DMCA hai 🙂😁
 #modify by madboy482
-@borg.on(admin_cmd(pattern=r"awake"))
-@bot.on(sudo_cmd(pattern=r"awake", allow_sudo=True))
 async def amireallyalive(awake):
    """ For .awake command, check if the bot is running.  """
    global PHOTO
@@ -60,10 +55,3 @@ async def amireallyalive(awake):
    else:
      await awake.edit("Please add right value in ALIVE_PHOTTO var..")
 
-CMD_HELP.update(
-    {
-        "awake": "Plugin : awake\
-    \n\nSyntax : .awake\
-    \nFunction : you can set here costom alive pic .set var ALIVE_PHOTTO (Telegraph link)"
-    }
-)

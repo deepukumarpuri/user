@@ -8,9 +8,6 @@ from datetime import datetime
 from telethon import events
 from telethon.tl import functions, types
 
-from ULTRA import CMD_HELP
-from ULTRA.utils import admin_cmd
-
 global USER_AFK  # pylint:disable=E0602
 global afk_time  # pylint:disable=E0602
 global last_afk_message  # pylint:disable=E0602
@@ -22,7 +19,6 @@ last_afk_message = {}
 afk_start = {}
 
 
-@borg.on(events.NewMessage(outgoing=True))  # pylint:disable=E0602
 async def set_not_afk(event):
     global USER_AFK  # pylint:disable=E0602
     global afk_time  # pylint:disable=E0602
@@ -64,11 +60,7 @@ async def set_not_afk(event):
         afk_time = None  # pylint:disable=E0602
 
 
-@borg.on(
-    events.NewMessage(  # pylint:disable=E0602
-        incoming=True, func=lambda e: bool(e.mentioned or e.is_private)
-    )
-)
+
 async def on_afk(event):
     if event.fwd_from:
         return
@@ -129,7 +121,6 @@ async def on_afk(event):
         last_afk_message[event.chat_id] = msg  # pylint:disable=E0602
 
 
-@borg.on(admin_cmd(pattern=r"afk ?(.*)", outgoing=True))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
@@ -170,12 +161,3 @@ async def _(event):
             logger.warn(str(e))  # pylint:disable=E0602
 
 
-CMD_HELP.update(
-    {
-        "afk": "__**PLUGIN NAME :** Afk__\
-\n\n ** CMD ** `.afk` [Optional Reason]\
-\n**USAGE  :  **Sets you as afk.\nReplies to anyone who tags/PM's \
-you telling them that you are AFK(reason)\n\n__Switches off AFK when you type back anything, anywhere.__\
-"
-    }
-)

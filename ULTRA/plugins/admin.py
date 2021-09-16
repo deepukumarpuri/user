@@ -21,11 +21,6 @@ from telethon.tl.functions.messages import UpdatePinnedMessageRequest
 from telethon.tl.types import (ChannelParticipantsAdmins, ChatAdminRights,
                                ChatBannedRights, MessageEntityMentionName,
                                MessageMediaPhoto)
-from ULTRAX import devs
-from ULTRA import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-from ULTRA.utils import register, errors_handler
-from ULTRA.utils import admin_cmd
-from ULTRAX import NAME, MASTER, BOT
 # =================== CONSTANT ===================
 PP_TOO_SMOL = "`The image is too small`"
 PP_ERROR = "`Failure while processing the image`"
@@ -69,8 +64,7 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
 #@register(outgoing=True, pattern="^.setgpic$")
-@borg.on(admin_cmd(pattern=r"setgpic"))
-@errors_handler
+
 async def set_group_photo(gpic):
     """ For .setgpic command, changes the picture of a group """
     if not gpic.is_group:
@@ -108,8 +102,7 @@ async def set_group_photo(gpic):
 
 
 #@register(outgoing=True, pattern="^.promote(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"promote(?: |$)(.*)"))
-@errors_handler
+
 async def promote(promt):
     """ For .promote command, promotes the replied/tagged person """
     # Get targeted chat
@@ -160,8 +153,7 @@ async def promote(promt):
 
 
 #@register(outgoing=True, pattern="^.demote(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"demote(?: |$)(.*)"))
-@errors_handler
+
 async def demote(dmod):
     """ For .demote command, demotes the replied/tagged person """
     # Admin right check
@@ -211,8 +203,7 @@ async def demote(dmod):
 
 
 #@register(outgoing=True, pattern="^.ban(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"ban(?: |$)(.*)"))
-@errors_handler
+
 async def ban(bon):
     """ For .ban command, bans the replied/tagged person """
     # Here laying the sanity check
@@ -265,9 +256,6 @@ async def ban(bon):
             f"CHAT: {bon.chat.title}(`{bon.chat_id}`)")
 
 
-#@register(outgoing=True, pattern="^.unban(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"unban(?: |$)(.*)"))
-@errors_handler
 async def nothanos(unbon):
     """ For .unban command, unbans the replied/tagged person """
     # Here laying the sanity check
@@ -305,8 +293,7 @@ async def nothanos(unbon):
 
 
 #@register(outgoing=True, pattern="^.mute(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"mute(?: |$)(.*)"))
-@errors_handler
+
 async def spider(spdr):
     """
     This function is basically muting peeps
@@ -368,8 +355,7 @@ async def spider(spdr):
 
 
 #@register(outgoing=True, pattern="^.unmute(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"unmute(?: |$)(.*)"))
-@errors_handler
+
 async def unmoot(unmot):
     """ For .unmute command, unmute the replied/tagged person """
     # Admin or creator check
@@ -417,8 +403,6 @@ async def unmoot(unmot):
                 f"CHAT: {unmot.chat.title}(`{unmot.chat_id}`)")
 
 
-@register(incoming=True)
-@errors_handler
 async def muter(moot):
     """ Used for deleting the messages of muted people """
     try:
@@ -450,8 +434,7 @@ async def muter(moot):
 
 
 #@register(outgoing=True, pattern="^.ungmute(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"ungmute(?: |$)(.*)"))
-@errors_handler
+
 async def ungmoot(un_gmute):
     """ For .ungmute command, ungmutes the target in the ULTRA """
     # Admin or creator check
@@ -495,8 +478,7 @@ async def ungmoot(un_gmute):
 
 
 #@register(outgoing=True, pattern="^.gmute(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"gmute(?: |$)(.*)"))
-@errors_handler
+
 async def gspider(gspdr):
     """ For .gmute command, globally mutes the replied/tagged person """
     # Admin or creator check
@@ -544,9 +526,7 @@ async def gspider(gspdr):
                 f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)")
 
 
-#@register(outgoing=True, pattern="^.delusers(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"delusers(?: |$)(.*)"))
-@errors_handler
+
 async def rm_deletedacc(show):
     """ For .delusers command, list all the ghost/deleted accounts in a chat. """
     if not show.is_group:
@@ -618,8 +598,7 @@ async def rm_deletedacc(show):
 
 
 #@register(outgoing=True, pattern="^.adminlist$")
-@borg.on(admin_cmd(pattern=r"adminlist"))
-@errors_handler
+
 async def get_admin(show):
     """ For .admins command, list all of the admins of the chat. """
     info = await show.client.get_entity(show.chat_id)
@@ -640,8 +619,7 @@ async def get_admin(show):
 
 
 #@register(outgoing=True, pattern="^.pin(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"pin(?: |$)(.*)"))
-@errors_handler
+
 async def pin(msg):
     """ For .pin command, pins the replied/tagged message on the top the chat. """
     # Admin or creator check
@@ -687,8 +665,7 @@ async def pin(msg):
 
 
 #@register(outgoing=True, pattern="^.kick(?: |$)(.*)")
-@borg.on(admin_cmd(pattern=r"kick(?: |$)(.*)"))
-@errors_handler
+
 async def kick(usr):
     """ For .kick command, kicks the replied/tagged person from the group. """
     # Admin or creator check
@@ -731,8 +708,7 @@ async def kick(usr):
 
 
 #@register(outgoing=True, pattern="^.users ?(.*)")
-@borg.on(admin_cmd(pattern=r"users ?(.*)"))
-@errors_handler
+
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """
     info = await show.client.get_entity(show.chat_id)
@@ -820,32 +796,4 @@ async def get_user_sender_id(user, event):
         return None
 
     return user_obj
-
-
-CMD_HELP.update({
-    "admin":
-    ".promote <username/reply> <custom rank (optional)>\
-\nUsage: Provides admin rights to the person in the chat.\
-\n\n.demote <username/reply>\
-\nUsage: Revokes the person's admin permissions in the chat.\
-\n\n.ban <username/reply> <reason (optional)>\
-\nUsage: Bans the person off your chat.\
-\n\n.unban <username/reply>\
-\nUsage: Removes the ban from the person in the chat.\
-\n\n.mute <username/reply> <reason (optional)>\
-\nUsage: Mutes the person in the chat, works on admins too.\
-\n\n.unmute <username/reply>\
-\nUsage: Removes the person from the muted list.\
-\n\n.gmute <username/reply> <reason (optional)>\
-\nUsage: Mutes the person in all groups you have in common with them.\
-\n\n.ungmute <username/reply>\
-\nUsage: Reply someone's message with .ungmute to remove them from the gmuted list.\
-\n\n.delusers\
-\nUsage: Searches for deleted accounts in a group. Use .delusers clean to remove deleted accounts from the group.\
-\n\n.adminlist\
-\nUsage: Retrieves a list of admins in the chat.\
-\n\n.users or .users <name of member>\
-\nUsage: Retrieves all (or queried) users in the chat.\
-\n\n.setgppic <reply to image>\
-\nUsage: Changes the group's display picture."
-})
+  

@@ -8,10 +8,6 @@ import sys
 
 from telethon import Button, custom, events, functions, version
 
-from ULTRA import CMD_LIST
-from ULTRA import ALIVE_NAME
-from ULTRAX import PHOTO
-from ULTRA.utils import admin_cmd, sudo_cmd
 from platform import uname
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
@@ -19,8 +15,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 
 #@command(pattern="^.help ?(.*)")
 
-@borg.on(admin_cmd(pattern=r"ihelp ?(.*)", outgoing=True))
-@borg.on(sudo_cmd(pattern=r"ihelp ?(.*)", outgoing=True, allow_sudo=True))
+
 async def cmd_list(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/" , "#", "-", "_", "@"):
         tgbotusername = Var.TG_BOT_USER_NAME_BF_HER
@@ -115,8 +110,6 @@ Dᴏ `.help` PLUGIN_NAME ғᴏʀ ᴄᴏᴍᴍᴀɴᴅs, ɪғ ɪɴ ᴄᴀsᴇ P�
 
             
 
-@borg.on(admin_cmd(pattern="legend"))  # pylint:disable=E0602
-
 async def _(event):
 
     if event.fwd_from:
@@ -129,9 +122,6 @@ async def _(event):
 
 
 
-
-
-@borg.on(admin_cmd(pattern="config"))  # pylint:disable=E0602
 
 async def _(event):
 
@@ -150,8 +140,6 @@ async def _(event):
 
 
 
-
-@borg.on(admin_cmd(pattern="syntax (.*)"))
 
 async def _(event):
 

@@ -6,16 +6,13 @@
 
 import asyncio
 
-from ULTRA.utils import admin_cmd, edit_or_reply, sudo_cmd
-from ULTRA import ALIVE_NAME, CMD_HELP
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 LEGEND_USER = "LEGEND X"
 MADBOY_USER = "««¿»» ««¿»»"
 MASTER_USER = "𝕄𝔸𝕊𝕋𝔼ℝ 🇮🇳 𝕊ℍ𝔸𝔻𝕆𝕎"
 
-@bot.on(admin_cmd(pattern="imp(|n) (.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="imp(|n) (.*)", allow_sudo=True))
+
 async def _(event):
     ultrax = bot.uid
     USERNAME = f"tg://user?id={ultrax}"
@@ -104,8 +101,7 @@ async def _(event):
         await event.client.send_file(event.chat_id, "CAADAQADQAADnjOcH-WOkB8DEctJAg")
 
 
-@bot.on(admin_cmd(pattern="timp(|n) (.*)", outgoing=True))
-@bot.on(sudo_cmd(pattern="timp(|n) (.*)", allow_sudo=True))
+
 async def _(event):
     name = event.pattern_match.group(2)
     cmd = event.pattern_match.group(1).lower()
@@ -141,15 +137,6 @@ async def _(event):
         )
 
 
-CMD_HELP.update(
-    {
-        "imposter": "**Plugin :** `imposter__`\
-\n\n**Syntax : **`.imp` / `.impn` <text>\
-\n**Usage : ** Find imposter with stickers.\
-\n\n**Syntax : **`.timp` / `.timpn` <text>\
-\n**Usage : ** Find imposter only text."
-    }
-)
 
 # thanks to @Skastickers for stickers....
 # Among us.....

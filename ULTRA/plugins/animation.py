@@ -5,8 +5,6 @@ import asyncio
 from collections import deque
 
 
-from ULTRA.utils import admin_cmd, edit_or_reply, sudo_cmd
-from ULTRA import CMD_HELP, ALIVE_NAME
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 
@@ -15,8 +13,7 @@ USERID = bot.uid
 mention = f"[{DEFAULTUSER}](tg://user?id={USERID})"
 
 
-@bot.on(admin_cmd(pattern="eye$"))
-@bot.on(sudo_cmd(pattern="eye$", allow_sudo=True))
+
 async def _(event):
     if event.fwd_from:
         return
@@ -931,46 +928,3 @@ async def _(event):
         await event.edit(animation_chars[i % 7])
         
         
-CMD_HELP.update(
-    {
-        "animation": """**Plugin : **`animation`
-        
-**Commands in animation are **
-  •  `.eye`
-  •  `.thinking`
-  •  `.snake`
-  •  `.human`
-  •  `.mc`
-  •  `.virus`
-  •  `.repe`
-  •  `.nikal`
-  •  `.music`
-  •  `.squ`
-  •  `.loading`
-  •  `.square`
-  •  `.up`
-  •  `.round`
-  •  `.hart`
-  •  `.anim`
-  •  `.fnl`
-  •  `.monkey`
-  •  `.herber`
-  •  `.hand`
-  •  `.gsg`
-  •  `.theart`
-  •  `.unoob`
-  •  `.menoob`
-  •  `.upro`
-  •  `.mepro`
-  •  `.quickheal`
-  •  `.sqh`
-  •  `.vquickheal`
-  •  `.macos`
-  •  `.windows`
-  •  `.linux`
-  •  `.stock`
-  •  `.os`
-  
-**Function : **__Different kinds of animation commands, check yourself for their animation .__"""
-    }
-)

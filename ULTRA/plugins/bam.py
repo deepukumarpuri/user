@@ -3,11 +3,9 @@ import asyncio
 from telethon import events
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChannelParticipantsAdmins
-from ULTRA import CMD_HELP
-from ULTRA.utils import admin_cmd
 
 
-@borg.on(admin_cmd("bam"))
+)
 async def gbun(event):
     if event.fwd_from:
         return
@@ -53,10 +51,3 @@ async def gbun(event):
         await event.reply(mention)
     await event.delete()
 
-CMD_HELP.update(
-    {
-        "bam": "**Plugin : **`bam`\
-    \n\n**Syntax : **`.bam`\
-    \n**Function : **fake ban for userbot"
-    }
-)

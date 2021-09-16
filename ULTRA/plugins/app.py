@@ -6,14 +6,10 @@
 import bs4
 import requests
 
-from ULTRA.utils import admin_cmd, edit_or_reply, sudo_cmd
-from ULTRA import ALIVE_NAME, CMD_HELP
-
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 
 
-@bot.on(admin_cmd(pattern="app (.*)"))
-@bot.on(sudo_cmd(pattern="app (.*)", allow_sudo=True))
+
 async def apk(event):
     app_name = event.pattern_match.group(1)
     event = await edit_or_reply(event, "Searching!")
@@ -81,9 +77,6 @@ async def apk(event):
     except Exception as err:
         await event.edit("Exception Occured:- " + str(err))
 
-
-@bot.on(admin_cmd(pattern="appr (.*)"))
-@bot.on(sudo_cmd(pattern="appr (.*)", allow_sudo=True))
 async def apkr(event):
     app_name = event.pattern_match.group(1)
     event = await edit_or_reply(event, "searching!")
@@ -153,7 +146,7 @@ async def apkr(event):
         await event.edit("Exception Occured:- " + str(err))
 
 
-@borg.on(admin_cmd(pattern="mods ?(.*)"))
+
 async def mod(event):
     if event.fwd_from:
         return
@@ -165,16 +158,3 @@ async def mod(event):
     await tap[0].click(event.chat_id)
     await event.delete()
 
-
-CMD_HELP.update(
-    {
-        "app": "**Plugin :** `app`\
-        \n**Syntax : **`.app [app name]`\
-        \n**Usage: **searches the app in the playstore and provides the link to the app in playstore and fetchs app details \
-        \n\n**Syntax : **`.mods [app name]`\
-        \n**Usage: **searches and downloads the modded app\
-        \n\n**Syntax : **`.appr [app name]`\
-        \n**Usage: **searches the app in the playstore and provides the link to the app in playstore and fetchs app details with Xpl0iter request link. \
-        "
-    }
-)

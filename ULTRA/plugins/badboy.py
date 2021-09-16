@@ -5,8 +5,7 @@ import asyncio
 from collections import deque
 
 
-from ULTRA.utils import admin_cmd, edit_or_reply, sudo_cmd
-from ULTRA import CMD_HELP, ALIVE_NAME
+
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 
@@ -15,8 +14,7 @@ USERID = bot.uid
 mention = f"[{DEFAULTUSER}](tg://user?id={USERID})"
 
 
-@bot.on(admin_cmd(pattern="stupid$"))
-@bot.on(sudo_cmd(pattern="stupid$", allow_sudo=True))
+
 async def _(event):
     if event.fwd_from:
         return

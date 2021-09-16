@@ -3,9 +3,6 @@
 import asyncio
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
-import ULTRA.plugins.sql_helper.antiflood_sql as sql
-from ULTRA import CMD_HELP
-from ULTRA.utils import admin_cmd, edit_or_reply, sudo_cmd
 
 CHAT_FLOOD = sql.__load_flood_settings()
 # warn mode for anti flood
@@ -14,7 +11,7 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
 )
 
 
-@bot.on(admin_cmd(incoming=True))
+
 async def _(event):
     if not CHAT_FLOOD:
         return
@@ -54,9 +51,6 @@ because he reached the defined flood limit.""".format(
             reply_to=event.message.id,
         )
 
-
-@bot.on(admin_cmd(pattern="setflood(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern="setflood(?: |$)(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -71,11 +65,3 @@ async def _(event):
     except Exception as e:  # pylint:disable=C0103,W0703
         await event.edit(str(e))
 
-
-CMD_HELP.update(
-    {
-        "antiflood": ".setflood [number]\
-\nUsage: warns the user if he spams the chat and if you are an admin then it mutes him in that group.\
-"
-    }
-)

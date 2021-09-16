@@ -11,8 +11,7 @@ import re
 from bs4 import BeautifulSoup
 from requests import get
 
-from ULTRA import CMD_HELP
-from ULTRA.utils import admin_cmd, edit_or_reply, sudo_cmd
+
 
 GITHUB = "https://github.com"
 DEVICES_DATA = (
@@ -21,8 +20,7 @@ DEVICES_DATA = (
 )
 
 
-@bot.on(admin_cmd(pattern=r"magisk"))
-@bot.on(sudo_cmd(pattern=r"magisk", allow_sudo=True))
+
 async def kakashi(magisk):
     if magisk.fwd_from:
         return
@@ -50,8 +48,6 @@ async def kakashi(magisk):
     await edit_or_reply(magisk, releases)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern=r"device(?: |$)(\S*)"))
-@bot.on(sudo_cmd(pattern=r"device(?: |$)(\S*)", allow_sudo=True))
 async def device_info(request):
     if request.fwd_from:
         return
@@ -85,8 +81,7 @@ async def device_info(request):
     await edit_or_reply(request, reply)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern=r"codename(?: |)([\S]*)(?: |)([\s\S]*)"))
-@bot.on(sudo_cmd(pattern=r"codename(?: |)([\S]*)(?: |)([\s\S]*)", allow_sudo=True))
+
 async def codename_info(request):
     if request.fwd_from:
         return
@@ -132,8 +127,7 @@ async def codename_info(request):
     await edit_or_reply(request, reply)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern=r"specs(?: |)([\S]*)(?: |)([\s\S]*)"))
-@bot.on(sudo_cmd(pattern=r"specs(?: |)([\S]*)(?: |)([\s\S]*)", allow_sudo=True))
+
 async def devices_specifications(request):
     if request.fwd_from:
         return
@@ -197,8 +191,6 @@ async def devices_specifications(request):
     await edit_or_reply(request, reply)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern=r"twrp(?: |$)(\S*)"))
-@bot.on(sudo_cmd(pattern=r"twrp(?: |$)(\S*)", allow_sudo=True))
 async def twrp(request):
     if request.fwd_from:
         return
@@ -231,18 +223,3 @@ async def twrp(request):
     await edit_or_reply(request, reply)
 
 
-CMD_HELP.update(
-    {
-        "android": "**Plugin : **`android`\
-\n\n  •  **Syntax : **`.magisk`\
-\n  •  **Function :** __Get latest Magisk releases__\
-\n\n  •  **Syntax : **`.device <codename>`\
-\n  •  **Function :** __Get info about android device codename or model.__\
-\n\n  •  **Syntax : **`.codename <brand> <device>`\
-\n  •  **Function :** __Search for android device codename.__\
-\n\n  •  **Syntax : **`.specs <brand> <device>`\
-\n  •  **Function :** __Get device specifications info.__\
-\n\n  •  **Syntax : **`.twrp <codename>`\
-\n  •  **Function : **__Get latest twrp download for android device.__"
-    }
-)

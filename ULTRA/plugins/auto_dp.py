@@ -16,8 +16,7 @@ import re
 import urllib
 import requests
 from telethon.tl import functions
-from ULTRA.utils import admin_cmd
-from ULTRA import CMD_HELP
+
 
 COLLECTION_STRING1 = [
     "awesome-batman-wallpapers",
@@ -225,7 +224,6 @@ async def animeppwall():
         )
     urllib.request.urlretrieve(fy, "donottouch.jpg")
 
-@bot.on(admin_cmd(pattern="batmandp$"))
 async def main(event):
     await event.edit("Actibated Batman Dp\nEnjoy 💜") 
     while True:
@@ -241,7 +239,7 @@ async def main(event):
         await asyncio.sleep(600)  # Edit this to your required needs
 
 
-@bot.on(admin_cmd(pattern="thordp$"))
+
 async def main(event):
     await event.edit("Activated Thor Dp\nEnjoy 💜") 
     while True:
@@ -256,7 +254,7 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600)  # Edit this to your required needs
 
-@bot.on(admin_cmd(pattern="actressdp$"))
+
 async def main(event):
     await event.edit("Activated Actress Dp\nEnjoy 💜")
     while True:
@@ -271,7 +269,6 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600) 
 
-@bot.on(admin_cmd(pattern="animedp$"))
 async def main(event):
     await event.edit("Activated Anime Dp\nEnjoy 💜")
     while True:
@@ -286,7 +283,7 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600) 
 
-@bot.on(admin_cmd(pattern="avengersdp$"))
+
 async def main(event):
     await event.edit("Activated Avengers Dp\nEnjoy 💜")
     while True:
@@ -301,7 +298,7 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600) 
 
-@bot.on(admin_cmd(pattern="gamerdp$"))
+
 async def main(event):
     await event.edit("Activated Gamers Dp\nEnjoy 💜")
     while True:
@@ -316,7 +313,7 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600) 
 
-@bot.on(admin_cmd(pattern="hackerdp$"))
+
 async def main(event):
     await event.edit("Activated Hackers Dp\nEnjoy 💜")
     while True:
@@ -331,7 +328,6 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600) 
 
-@bot.on(admin_cmd(pattern="spacedp$"))
 async def main(event):
     await event.edit("Activated Space Dp\nEnjoy 💜")
     while True:
@@ -346,7 +342,6 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600) 
 
-@bot.on(admin_cmd(pattern="wallpapers$"))
 async def main(event):
     await event.edit("Activated Wallappers on your DP\nEnjoy 💜")
     while True:
@@ -361,20 +356,3 @@ async def main(event):
         os.system("rm -rf donottouch.jpg")
         await asyncio.sleep(600) 
         
-CMD_HELP.update(
-    {
-        "auto_dp": """**Plugin : **`auto_dp`
-    
-**Commands found in auto_dp are **
-  •  `.batmandp`
-  •  `.thordp`
-  •  `.actressdp`
-  •  `.animedp`
-  •  `.avengersdp`
-  •  `.gamerdp`
-  •  `.hackerdp`
-  •  `.spacedp`
-  •  `.wallpapers`
-**Function : **__Changes your profile pic every 10 minutes with the command you used(mean the batman or thor or blah blah blah......)__"""
-    }
-)

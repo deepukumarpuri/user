@@ -16,13 +16,13 @@ import shutil
 import subprocess
 import time
 from pySmartDL import SmartDL
-from ULTRA.uniborgConfig import Config
+
 from telethon import events
-from ULTRA.utils import admin_cmd, humanbytes, progress, time_formatter
+
 import subprocess
 import patoolib
 import tarfile
-from ULTRA import CMD_HELP
+
 
 thumb_image_path = Config.TMP_DOWNLOAD_DIRECTORY + "/thumb_image.jpg"
 extracted = Config.TMP_DOWNLOAD_DIRECTORY + "extracted/"
@@ -262,7 +262,7 @@ async def create_archive(input_directory):
     return return_name
 
 
-@borg.on(admin_cmd(pattern="unzip"))
+
 async def _(event):
     if event.fwd_from:
         return
@@ -354,7 +354,7 @@ async def _(event):
 
 
 
-@borg.on(admin_cmd(pattern="unrar"))
+
 async def _(event):
     if event.fwd_from:
         return
@@ -442,7 +442,7 @@ async def _(event):
                 os.remove(single_file)
         os.remove(downloaded_file_name)
 
-@borg.on(admin_cmd(pattern="untar"))
+
 async def _(event):
     if event.fwd_from:
         return
@@ -556,21 +556,4 @@ def get_lst_of_files(input_directory, output_lst):
 
 
 
-CMD_HELP.update({
-    "archive":
-    ".zip reply to a file/media\
-    \nUSEAGE: it will zip that file/media\
-    \n\n.rar reply to a file/media\
-    \nUSEAGE: it will rar that file/media\
-    z\n\n. reply to a file/media\
-    \nUSEAGE: it will make into .7z that hat file/media\
-    \n\n.tar reply to a file/media\
-    \nUSEAGE: it will tar that file/media\
-    \n\n.unzip reply to a .zip file\
-    \nUSEAGE: it will unzip that .zip file\
-    \n\n.unrar reply to a .rar file\
-    \nUSEAGE: it will unrar that .rar file\
-    \n\n.untar reply to a .tar\
-    \nUSEAGE: it will untar that .tar file\
-"
-}) 
+

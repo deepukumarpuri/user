@@ -4,8 +4,6 @@
 import asyncio
 from collections import deque
 
-
-
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 
 USERID = bot.uid

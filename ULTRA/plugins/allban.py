@@ -4,11 +4,9 @@
 from asyncio import sleep
 from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins, ChatAdminRights
 from telethon.tl.functions.channels import EditBannedRequest
-from ULTRA.utils import admin_cmd
-from ULTRA import bot, CMD_HELP
+
 error = []
 
-@bot.on(admin_cmd(pattern=r"allban", outgoing=True))
 async def testing(event):
     global error
     nikal = await event.get_chat()
@@ -31,11 +29,3 @@ async def testing(event):
             pass
     await event.edit("**Nᴏᴛʜɪɴɢ Hᴀᴘᴘᴇɴᴇᴅ Hᴇʀᴇ 🙃🙂**")
     print (error)
-
-CMD_HELP.update(
-    {
-        "allban": "**Plugin : **`allban`\
-    \n\n**Syntax : **`.allban`\
-    \n**Function : **ban all members in 1 cmnd"
-    }
-)

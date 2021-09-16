@@ -6,8 +6,7 @@
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from ULTRA.utils import admin_cmd, edit_or_reply, sudo_cmd
-from ULTRA import CMD_HELP, ALIVE_NAME
+
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "υℓтяα χ"
 
@@ -16,8 +15,6 @@ USERID = bot.uid
 mention = f"[{DEFAULTUSER}](tg://user?id={USERID})"
 
 
-@bot.on(admin_cmd("ascii ?(.*)"))
-@bot.on(sudo_cmd(pattern="ascii ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -58,8 +55,6 @@ async def _(event):
             await event.client.send_read_acknowledge(conv.chat_id)
 
 
-@bot.on(admin_cmd(pattern="line ?(.*)"))
-@bot.on(sudo_cmd(pattern="line ?(.*)", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -94,13 +89,3 @@ async def _(event):
             caption=f"**Image Type :** LINE Art \n**Uploaded By :** {mention}",
         )
 
-
-CMD_HELP.update(
-    {
-        "ascii": "__**PLUGIN NAME :** ascii__\
-      \n\n** CMD ** `.ascii` reply to any image file:\
-      \n**USAGE : **Makes an image ascii style, try out your own.\
-      \n\n** CMD ** `.line` reply to any image file:\
-      \n**USAGE : **Makes an image line style.\ "
-    }
-)
